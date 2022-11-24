@@ -1,14 +1,12 @@
 import React from 'react'
 
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container'
+import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar'
 
-
-
-import siteMetadata from '../data/siteMetadata';
-import SocialIcon from './social-icons';
-import { ReactComponent as Logo} from '../assets/img/logo.svg';
+import siteMetadata from '../data/siteMetadata'
+import SocialIcon from './social-icons'
+import { ReactComponent as Logo } from '../assets/img/logo.svg'
 
 const NavBar = () => {
   return (
@@ -17,7 +15,7 @@ const NavBar = () => {
         <Navbar.Brand href="#home">
           <Container fluid="xl">
             <Logo className="logo" />
-          </Container>          
+          </Container>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav">
           <span className="navbar-toggler-icon"></span>
