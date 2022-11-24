@@ -2,9 +2,22 @@ import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import NavBar from './components/NavBar';
+import Banner from './components/Banner';
+import Resume from './components/Resume';
+import Skills from './components/Skills';
+import Projects from './components/Projects';
+import Footer from './components/Footer';
+
 function App() {
   return (
     <div className="App">
+      <NavBar />
+      <Banner />
+      <Resume />
+      <Skills />
+      <Projects />
+      <Footer />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
