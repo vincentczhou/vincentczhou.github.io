@@ -65,14 +65,26 @@ nav.navbar {
   padding: 21px;
   top: 0px;
   width: 100%;
-  transition: 1.15s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.hiddenNavbar {
+  opacity: 0%;
+  visibility: collapse;
+  transition: 0.3s ease-in-out;
+}
+
+.navbarbrand {
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 
 .logo {
+  left: 0px;
   width: 21%;
   height: 21%;
-  fill:#00C8F0;
-  
+  /* fill:#00C8F0; */
 }
 
 /* Banner */
@@ -86,15 +98,13 @@ nav.navbar {
 }
 
 .banner h1 {
-  color:aliceblue;
+  color: aliceblue;
   font-size: 111px;
   font-size-adjust: 0.58;
   display: block;
 }
 
-
 /* social-icons */
 .social-icon-wrapper {
   padding: 10px;
 }
-

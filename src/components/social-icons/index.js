@@ -1,8 +1,8 @@
-import { ReactComponent as Mail} from './mail.svg'
-import { ReactComponent as Github} from './github.svg'
-import { ReactComponent as Linkedin} from './linkedin.svg'
-import { ReactComponent as CTFtime} from './ctftime.svg'
-import { ReactComponent as Homepage} from './homepage.svg'
+import { ReactComponent as Mail } from './mail.svg'
+import { ReactComponent as Github } from './github.svg'
+import { ReactComponent as Linkedin } from './linkedin.svg'
+import { ReactComponent as CTFtime } from './ctftime.svg'
+import { ReactComponent as Homepage } from './homepage.svg'
 
 // Icons taken from: https://simpleicons.org/
 
@@ -21,14 +21,9 @@ const SocialIcon = ({ kind, href, size = 8 }) => {
   const SocialSvg = components[kind]
 
   return (
-    <a
-      className="social-icon-wrapper"
-      target="_blank"
-      rel="noopener noreferrer"
-      href={href}
-    >
-    <SocialSvg src={SocialSvg} alt={kind} width={size} height={size} />
-    </a>  
+    <a className="social-icon-wrapper" target="_blank" rel="noopener noreferrer" href={href}>
+      <SocialSvg src={SocialSvg} alt={kind} width={size} height={size} />
+    </a>
   )
 }
 
