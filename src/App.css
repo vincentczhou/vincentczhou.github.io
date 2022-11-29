@@ -61,32 +61,6 @@ body {
 }
 /* Navbar */
 
-nav.navbar {
-  padding: 21px;
-  top: 0px;
-  width: 100%;
-  transition: 0.3s ease-in-out;
-}
-
-.hiddenNavbar {
-  opacity: 0%;
-  visibility: collapse;
-  transition: 0.3s ease-in-out;
-}
-
-.navbarbrand {
-  display: flex;
-  width: 100%;
-  height: 100%;
-}
-
-.logo {
-  left: 0px;
-  width: 21%;
-  height: 21%;
-  /* fill:#00C8F0; */
-}
-
 /* Banner */
 .banner {
   margin-top: 0;
@@ -103,6 +77,30 @@ nav.navbar {
   font-size-adjust: 0.58;
   display: block;
 }
+
+/* react-pdf */
+
+.react-pdf__Document {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.react-pdf__Page {
+  margin: 15px;
+  max-width: calc(100% - 32px);
+  box-shadow: 0 33px 39px 0 rgba(21, 36, 99, 0.66);
+  border-radius: 30px;
+}
+
+.react-pdf__Page canvas {
+  max-width: 100%;
+  height: auto !important;
+  border-radius: 30px;
+}
+
+/* .react-pdf__Page div span {
+} */
 
 /* social-icons */
 .social-icon-wrapper {
