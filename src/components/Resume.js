@@ -29,8 +29,8 @@ const StyledButtonGroup = styled(ButtonGroup)`
   ${(props) => (!props.showButtonGroup ? 'opacity: 0%; visibility: collapse;' : '')}
 `
 
-const file = 'https://www.nhk.or.jp/lesson/update/pdf/leall_en_t.pdf'
-// const file = '/test.pdf'
+// const file = 'https://www.nhk.or.jp/lesson/update/pdf/leall_en_t.pdf'
+const file = '/test.pdf'
 
 const options = {
   cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`,
