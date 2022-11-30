@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import { BrowserRouter } from 'react-router-dom'
 
+import CssBaseline from '@mui/material/CssBaseline'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 import NavBar from './components/NavBar'
@@ -20,7 +21,13 @@ const theme = createTheme({
   palette: {
     type: 'light',
     primary: {
-      main: '#f50057',
+      main: '#84b6ff',
+    },
+    secondary: {
+      main: '#c5a088',
+    },
+    background: {
+      default: '#FBF7F5',
     },
   },
 })
@@ -29,6 +36,7 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
+        <CssBaseline />
         <BrowserRouter>
           <NavBar />
           <Banner hash="#home" options={{ position: 'start' }} />

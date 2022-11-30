@@ -19,7 +19,7 @@ import {
 } from '@mui/icons-material'
 import { styled } from '@mui/material/styles'
 
-pdfjs.GlobalWorkerOptions.workerSrc = `https//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`
+pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`
 // pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
 const StyledButtonGroup = styled(ButtonGroup)`
