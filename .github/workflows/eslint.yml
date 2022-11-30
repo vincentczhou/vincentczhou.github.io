@@ -36,13 +36,20 @@ jobs:
         
       - name: npm build
         run: npm run build
-        
-      - name: Deploy
+
+      - name: Publish github pages
         run: |
-          git config --global user.name $user_name
-          git config --global user.email $user_email
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          npm run deploy
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/vincentczhou/vincentczhou.github.io.git
+          npx gh-pages -d build -u "github-actions-bot <support+actions@github.com>"
         env:
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+      # - name: Deploy
+      #   run: |
+      #     git config --global user.name $user_name
+      #     git config --global user.email $user_email
+      #     git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+      #     npm run deploy
+      #   env:
+      #     user_name: 'github-actions[bot]'
+      #     user_email: 'github-actions[bot]@users.noreply.github.com'
