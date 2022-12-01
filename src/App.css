@@ -62,14 +62,14 @@ body {
 /* Navbar */
 
 /* Banner */
-.banner {
+/* .banner {
   margin-top: 0;
   padding: 666px 0px 444px 0px;
   background-image: url('./assets/img/banner.JPG');
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
-}
+} */
 
 .banner h1 {
   color: aliceblue;

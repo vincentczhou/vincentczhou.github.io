@@ -1,6 +1,8 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+import React, { useEffect, useRef, useState } from 'react'
+
 import { BrowserRouter } from 'react-router-dom'
 
 import CssBaseline from '@mui/material/CssBaseline'
@@ -19,7 +21,7 @@ const theme = createTheme({
     src: './assets/font/Comfortaa-VariableFont_wght.ttf',
   },
   palette: {
-    type: 'light',
+    mode: 'light',
     primary: {
       main: '#84b6ff',
     },
@@ -33,16 +35,41 @@ const theme = createTheme({
 })
 
 function App() {
+  const homeRef = useRef()
+  const resumeRef = useRef()
+  const skillsRef = useRef()
+  const projectsRef = useRef()
+
+  const [resumeLoaded, setResumeLoaded] = useState(false)
+
+  useEffect(() => {
+    console.log('before', resumeLoaded)
+    const Refs = {
+      home: homeRef,
+      resume: resumeRef,
+      skills: skillsRef,
+      projects: projectsRef,
+    }
+    const scrollRef = window.location.hash
+      ? window.location.hash.toLowerCase().replace(/\W/g, '')
+      : window.location.pathname.toLowerCase().replace(/\W/g, '')
+    console.log(scrollRef)
+    if (resumeLoaded && Refs[scrollRef]) {
+      console.log('after', resumeLoaded)
+      Refs[scrollRef].current.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [resumeLoaded])
+
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <BrowserRouter>
           <NavBar />
-          <Banner hash="#home" options={{ position: 'start' }} />
-          <Resume hash="#resume" options={{ position: 'start' }} />
-          <Skills hash="#skills" options={{ position: 'start' }} />
-          <Projects hash="#projects" options={{ position: 'start' }} />
+          <Banner ref={homeRef} />
+          <Resume ref={resumeRef} resumeLoad={setResumeLoaded} />
+          <Skills ref={skillsRef} />
+          <Projects ref={projectsRef} />
           <Footer />
         </BrowserRouter>
         {/* <header className="App-header">

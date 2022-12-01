@@ -1,6 +1,4 @@
-import React, { useState } from 'react'
-
-import { useHashScroll } from 'react-hash-scroll'
+import React, { useState, forwardRef } from 'react'
 
 // import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry.webpack5'
 import { Document, Page, pdfjs } from 'react-pdf'
@@ -11,6 +9,7 @@ import Container from '@mui/material/Container'
 import CircularProgress from '@mui/material/CircularProgress'
 import Skeleton from '@mui/material/Skeleton'
 import Stack from '@mui/material/Stack'
+import Typography from '@mui/material/Typography'
 import { Button, ButtonGroup } from '@mui/material'
 import {
   ArrowCircleLeftRounded as ArrowCircleLeftRoundedIcon,
@@ -22,11 +21,13 @@ import { styled } from '@mui/material/styles'
 pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`
 // pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
-const StyledButtonGroup = styled(ButtonGroup)`
+const StyledButtonGroup = styled(ButtonGroup, {
+  shouldForwardProp: (prop) => prop !== 'showbuttongroup',
+})`
   position: static;
   transform: translateY(-240%);
   transition: all 0.3s ease-in-out;
-  ${(props) => (!props.showButtonGroup ? 'opacity: 0%; visibility: collapse;' : '')}
+  ${(props) => (!props.showbuttongroup ? 'opacity: 0%; visibility: collapse;' : '')}
 `
 
 // const file = 'https://www.nhk.or.jp/lesson/update/pdf/leall_en_t.pdf'
@@ -38,9 +39,7 @@ const options = {
   standardFontDataUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/standard_fonts`,
 }
 
-const Resume = ({ hash, options }) => {
-  const scrollRef = useHashScroll(hash, options)
-
+const Resume = forwardRef(({ resumeLoad }, ref) => {
   const [numPages, setNumPages] = useState(null)
   const [pageNumber, setPageNumber] = useState(1)
 
@@ -77,7 +76,16 @@ const Resume = ({ hash, options }) => {
   }
 
   return (
-    <Container id="resume" ref={scrollRef}>
+    <Container
+      sx={{
+        padding: '150px 0px 150px 0px',
+        backgroundColor: '#0072ff',
+        boxShadow: '0 33px 39px 0',
+      }}
+      id="resume"
+      ref={ref}
+    >
+      <Typography variant="h1">Resume</Typography>
       <Document
         file={file}
         loading={<CircularProgress variant="determinate" value={progress} />}
@@ -96,6 +104,7 @@ const Resume = ({ hash, options }) => {
               <Skeleton variant="text" sx={{ fontSize: '32px' }} />
             </Stack>
           }
+          onLoadSuccess={() => resumeLoad(true)}
           pageNumber={pageNumber}
           renderAnnotationLayer={false}
           renderTextLayer={false}
@@ -106,7 +115,7 @@ const Resume = ({ hash, options }) => {
         <StyledButtonGroup
           variant="contained"
           aria-label="outlined primary button group"
-          showButtonGroup={showButtonGroup}
+          showbuttongroup={showButtonGroup}
           onMouseEnter={onMouseEnter}
         >
           <Button disabled={pageNumber <= 1} onClick={previousPage}>
@@ -132,6 +141,6 @@ const Resume = ({ hash, options }) => {
       </Button>
     </Container>
   )
-}
+})
 
 export default Resume

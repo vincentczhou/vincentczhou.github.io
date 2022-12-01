@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, forwardRef } from 'react'
 
-import { useHashScroll } from 'react-hash-scroll'
+// import { useHashScroll } from 'react-hash-scroll'
 
 import Carousel from 'react-bootstrap/Carousel'
 
@@ -14,8 +14,8 @@ import { List, ListItem, ListItemButton, ListItemText } from '@mui/material'
 
 import projectsData from '../data/projectsData'
 
-const Projects = ({ hash, options }) => {
-  const scrollRef = useHashScroll(hash, options)
+const Projects = forwardRef(({ hash, options }, ref) => {
+  // const scrollRef = useHashScroll(hash, options)
 
   const [selectedIndex, setSelectedIndex] = useState(1)
 
@@ -25,11 +25,20 @@ const Projects = ({ hash, options }) => {
   }
 
   return (
-    <Container id="projects" ref={scrollRef}>
-      <Grid2 container spacing={3} sx={{ flexGrow: 1 }}>
+    <Container
+      sx={{
+        padding: '150px 0px 150px 0px',
+        backgroundColor: '#0094ff',
+        boxShadow: '0 33px 39px 0',
+      }}
+      id="projects"
+      ref={ref}
+    >
+      <Typography variant="h1">Projects</Typography>
+      <Grid2 container spacing={1} sx={{ flexGrow: 1 }}>
         <Grid2>
           <Box>
-            <Paper elevation={21} sx={{ maxHeight: 300, overflow: 'auto' }}>
+            <Paper elevation={21} sx={{ height: 600, maxHeight: 600, overflow: 'auto' }}>
               <List sx={{ bgcolor: 'background.paper' }}>
                 {projectsData.map((data, index) => (
                   <React.Fragment key={data.title}>
@@ -65,7 +74,7 @@ const Projects = ({ hash, options }) => {
         <Grid2 mdOffset="auto">
           <Box>
             <Paper elevation={21}>
-              <Card sx={{ maxWidth: 345 }}>
+              <Card sx={{ maxWidth: 400, overflow: 'auto' }}>
                 <Carousel>
                   {projectsData[selectedIndex].imgSrc.map((data) => (
                     <Carousel.Item>
@@ -97,6 +106,6 @@ const Projects = ({ hash, options }) => {
       </Grid2>
     </Container>
   )
-}
+})
 
 export default Projects

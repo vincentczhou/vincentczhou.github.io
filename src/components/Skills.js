@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 
-import { useHashScroll } from 'react-hash-scroll'
+// import { useHashScroll } from 'react-hash-scroll'
 
 import Avatar from '@mui/material/Avatar'
 import Container from '@mui/material/Container'
 import Grid2 from '@mui/material/Unstable_Grid2'
 import LinearProgress from '@mui/material/LinearProgress'
 import Tooltip from '@mui/material/Tooltip'
+import Typography from '@mui/material/Typography'
 import { Card, CardHeader } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
@@ -22,10 +23,19 @@ const StyledLinearProgress = styled(LinearProgress)(() => ({
   borderRadius: 6,
 }))
 
-const Skills = ({ hash, options }) => {
-  const scrollRef = useHashScroll(hash, options)
+const Skills = forwardRef(({ hash, options }, ref) => {
+  // const scrollRef = useHashScroll(hash, options)
   return (
-    <Container id="skills" ref={scrollRef}>
+    <Container
+      sx={{
+        padding: '150px 0px 150px 0px',
+        backgroundColor: '#0085ff',
+        boxShadow: '0 33px 39px 0',
+      }}
+      id="skills"
+      ref={ref}
+    >
+      <Typography variant="h1">Skills</Typography>
       <Grid2 container spacing={3}>
         {skillData.map((data) => (
           <StyledGrid2 xs="auto" key={data.name}>
@@ -53,6 +63,6 @@ const Skills = ({ hash, options }) => {
       </Grid2>
     </Container>
   )
-}
+})
 
 export default Skills

@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+
+import { useClickAway } from 'react-use'
 
 import { HashLink } from 'react-router-hash-link'
 
@@ -23,12 +25,12 @@ import SocialIcon from './social-icons'
 import { ReactComponent as Logo } from '../assets/img/logo.svg'
 import siteMetadata from '../data/siteMetadata'
 
-const HidingNavbar = styled(Navbar)`
+const HidingNavbar = styled(Navbar, { shouldForwardProp: (prop) => prop !== 'shownav' })`
   padding: 21px;
   top: 0px;
   width: 100%;
   transition: all 0.3s ease-in-out;
-  ${(props) => (!props.showNav ? 'opacity: 0%; visibility: collapse;' : '')}
+  ${(props) => (!props.shownav ? 'opacity: 0%; visibility: collapse;' : '')}
 
   & .navbar-toggler {
   }
@@ -65,7 +67,7 @@ const NavBar = () => {
   const [showNav, setShowNav] = useState(true)
   useEffect(() => {
     const onScroll = () => {
-      if (window.scrollY > 1000) {
+      if (window.scrollY > 300) {
         setShowNav(false)
       } else {
         setShowNav(true)
@@ -78,12 +80,16 @@ const NavBar = () => {
   })
 
   const [open, setOpen] = React.useState(false)
-  const handleOpen = () => setOpen(true)
+  // const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
+  const handleToggle = () => setOpen(!open)
+
+  const speedDialRef = useRef()
+  useClickAway(speedDialRef, handleClose, ['mouseup'])
 
   return (
     <Container>
-      <HidingNavbar showNav={showNav} bg="light" expand="md" fixed="top">
+      <HidingNavbar shownav={showNav} bg="light" expand="md" fixed="top">
         <Container>
           <Navbar.Brand className="navbarbrand" href="#home">
             <StyledLogo />
@@ -118,9 +124,11 @@ const NavBar = () => {
         sx={{ position: 'fixed', top: 21, right: 21 }}
         icon={<SpeedDialIcon icon={<MenuRoundedIcon />} openIcon={<MenuOpenRoundedIcon />} />}
         direction="down"
-        onClose={handleClose}
-        onOpen={handleOpen}
+        // onClose={handleClose}
+        // onOpen={handleOpen}
+        onClick={handleToggle}
         open={open}
+        ref={speedDialRef}
       >
         {actions.map((action) => (
           <SpeedDialAction
