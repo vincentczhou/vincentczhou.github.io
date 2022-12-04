@@ -1,7 +1,4 @@
-import React from 'react'
-
-import Container from 'react-bootstrap/Container'
-
+import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 
 import siteMetadata from '../data/siteMetadata'

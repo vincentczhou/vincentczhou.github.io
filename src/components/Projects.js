@@ -1,6 +1,4 @@
-import React, { useState, forwardRef } from 'react'
-
-// import { useHashScroll } from 'react-hash-scroll'
+import { forwardRef, Fragment, useState } from 'react'
 
 import Carousel from 'react-bootstrap/Carousel'
 
@@ -11,37 +9,62 @@ import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import { Card, CardActions, CardContent } from '@mui/material'
 import { List, ListItem, ListItemButton, ListItemText } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
 import projectsData from '../data/projectsData'
 
-const Projects = forwardRef(({ hash, options }, ref) => {
-  // const scrollRef = useHashScroll(hash, options)
+const StyledCarousel = styled(Carousel)`
+  height: 700px;
+`
 
-  const [selectedIndex, setSelectedIndex] = useState(1)
+const StyledImage = styled('img')`
+  object-fit: contain;
+  max-width: 900px;
+  max-height: 700px;
+`
+
+const Projects = forwardRef((props, ref) => {
+  const [selectedIndex, setSelectedIndex] = useState(0)
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index)
-    console.log(selectedIndex)
   }
 
   return (
     <Container
+      maxWidth="true"
       sx={{
-        padding: '150px 0px 150px 0px',
-        backgroundColor: '#0094ff',
+        padding: '150px 15px 150px 15px',
+        // backgroundColor: '#0094ff',
         boxShadow: '0 33px 39px 0',
       }}
       id="projects"
       ref={ref}
     >
       <Typography variant="h1">Projects</Typography>
-      <Grid2 container spacing={1} sx={{ flexGrow: 1 }}>
-        <Grid2>
-          <Box>
-            <Paper elevation={21} sx={{ height: 600, maxHeight: 600, overflow: 'auto' }}>
-              <List sx={{ bgcolor: 'background.paper' }}>
+      <Grid2
+        container
+        spacing={1}
+        // sx={{ flexGrow: 1 }}
+        columns={15}
+      >
+        <Grid2 xs={6}>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '100%',
+            }}
+          >
+            {/* <Paper elevation={21} sx={{ height: 600, maxHeight: 600, overflow: 'auto' }}> */}
+            <Paper
+              elevation={21}
+              sx={{ maxHeight: '666px', overflow: 'auto', borderRadius: '15px' }}
+            >
+              <List sx={{ bgcolor: 'background.paper', borderRadius: '15px' }}>
                 {projectsData.map((data, index) => (
-                  <React.Fragment key={data.title}>
+                  <Fragment key={data.title}>
                     <ListItem alignItems="flex-start">
                       <ListItemButton
                         selected={selectedIndex === index}
@@ -51,7 +74,7 @@ const Projects = forwardRef(({ hash, options }, ref) => {
                         <ListItemText
                           primary={data.title}
                           secondary={
-                            <React.Fragment>
+                            <Fragment>
                               <Typography
                                 sx={{ display: 'inline' }}
                                 component="span"
@@ -59,33 +82,34 @@ const Projects = forwardRef(({ hash, options }, ref) => {
                                 color="text.primary"
                               ></Typography>
                               {data.summary}
-                            </React.Fragment>
+                            </Fragment>
                           }
                         />
                       </ListItemButton>
                     </ListItem>
-                  </React.Fragment>
+                  </Fragment>
                 ))}
               </List>
             </Paper>
           </Box>
         </Grid2>
         {/* aaaaaaaaaaa */}
-        <Grid2 mdOffset="auto">
+        <Grid2 xs={9}>
           <Box>
             <Paper elevation={21}>
-              <Card sx={{ maxWidth: 400, overflow: 'auto' }}>
-                <Carousel>
+              {/* <Card sx={{ width: '900px', height: '900px', overflow: 'auto' }}> */}
+              <Card sx={{ overflow: 'auto' }}>
+                <StyledCarousel>
                   {projectsData[selectedIndex].imgSrc.map((data) => (
                     <Carousel.Item>
-                      <img className="d-block w-100" src={data} alt="First slide" />
+                      <StyledImage src={data} alt="First slide" />
                       {/* <Carousel.Caption>
                         <h3>First slide label</h3>
                         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                       </Carousel.Caption> */}
                     </Carousel.Item>
                   ))}
-                </Carousel>
+                </StyledCarousel>
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
                     {projectsData[selectedIndex].title}

@@ -1,9 +1,8 @@
-import React, { useState, forwardRef } from 'react'
-
+import { forwardRef, useState } from 'react'
 // import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry.webpack5'
 import { Document, Page, pdfjs } from 'react-pdf'
-// import 'react-pdf/dist/esm/Page/AnnotationLayer.css'
-// import 'react-pdf/dist/esm/Page/TextLayer.css'
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css'
+import 'react-pdf/dist/esm/Page/TextLayer.css'
 
 import Container from '@mui/material/Container'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -21,15 +20,6 @@ import { styled } from '@mui/material/styles'
 pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`
 // pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
-const StyledButtonGroup = styled(ButtonGroup, {
-  shouldForwardProp: (prop) => prop !== 'showbuttongroup',
-})`
-  position: static;
-  transform: translateY(-240%);
-  transition: all 0.3s ease-in-out;
-  ${(props) => (!props.showbuttongroup ? 'opacity: 0%; visibility: collapse;' : '')}
-`
-
 // const file = 'https://www.nhk.or.jp/lesson/update/pdf/leall_en_t.pdf'
 const file = '/test.pdf'
 
@@ -39,6 +29,31 @@ const options = {
   standardFontDataUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/standard_fonts`,
 }
 
+const StyledDocument = styled(Document)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const StyledPage = styled(Page)`
+  margin: 15px;
+  max-width: calc(100% - 32px);
+  box-shadow: 0 33px 39px 0 rgba(21, 36, 99, 0.66);
+  border-radius: 30px;
+
+  & canvas {
+    border-radius: 30px;
+  }
+`
+
+const StyledButtonGroup = styled(ButtonGroup, {
+  shouldForwardProp: (prop) => prop !== 'showbuttongroup',
+})`
+  position: static;
+  transform: translateY(-240%);
+  transition: all 0.3s ease-in-out;
+  ${(props) => (!props.showbuttongroup ? 'opacity: 0%; visibility: collapse;' : '')}
+`
 const Resume = forwardRef(({ resumeLoad }, ref) => {
   const [numPages, setNumPages] = useState(null)
   const [pageNumber, setPageNumber] = useState(1)
@@ -64,11 +79,9 @@ const Resume = forwardRef(({ resumeLoad }, ref) => {
 
   const [showButtonGroup, setShowButtonGroup] = useState(false)
   const onMouseEnter = () => {
-    console.log('over')
     setShowButtonGroup(true)
   }
   const onMouseLeave = () => {
-    console.log('out')
     setShowButtonGroup(false)
   }
   const onClick = () => {
@@ -78,7 +91,7 @@ const Resume = forwardRef(({ resumeLoad }, ref) => {
   return (
     <Container
       sx={{
-        padding: '150px 0px 150px 0px',
+        padding: '150px 15px 150px 15px',
         backgroundColor: '#0072ff',
         boxShadow: '0 33px 39px 0',
       }}
@@ -86,14 +99,15 @@ const Resume = forwardRef(({ resumeLoad }, ref) => {
       ref={ref}
     >
       <Typography variant="h1">Resume</Typography>
-      <Document
+      <StyledDocument
         file={file}
         loading={<CircularProgress variant="determinate" value={progress} />}
         onLoadProgress={({ loaded, total }) => setProgress((loaded / total) * 100)}
         onLoadSuccess={onDocumentLoadSuccess}
         options={options}
       >
-        <Page
+        <StyledPage
+          width={ref.current?.getBoundingClientRect().width * 0.9 || undefined}
           loading={
             <Stack spacing={1} sx={{ padding: 3, width: 300 }}>
               <Skeleton variant="text" sx={{ fontSize: '32px' }} />
@@ -106,8 +120,8 @@ const Resume = forwardRef(({ resumeLoad }, ref) => {
           }
           onLoadSuccess={() => resumeLoad(true)}
           pageNumber={pageNumber}
-          renderAnnotationLayer={false}
-          renderTextLayer={false}
+          renderAnnotationLayer={true}
+          renderTextLayer={true}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
           onClick={onClick}
@@ -128,7 +142,7 @@ const Resume = forwardRef(({ resumeLoad }, ref) => {
             <ArrowCircleRightRoundedIcon />
           </Button>
         </StyledButtonGroup>
-      </Document>
+      </StyledDocument>
       <Button
         size="large"
         variant="contained"
@@ -136,6 +150,7 @@ const Resume = forwardRef(({ resumeLoad }, ref) => {
         target="_blank"
         rel="noopener noreferrer"
         href={file}
+        sx={{ '&:hover': { color: 'inherit' } }}
       >
         Download
       </Button>

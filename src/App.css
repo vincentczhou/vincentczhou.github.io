@@ -2,41 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 /* Font */
 @font-face {
   font-family: Comfortaa;
@@ -60,7 +25,6 @@ body {
   font-family: Comfortaa;
 }
 /* Navbar */
-
 /* Banner */
 /* .banner {
   margin-top: 0;
@@ -71,38 +35,22 @@ body {
   background-repeat: no-repeat;
 } */
 
-.banner h1 {
+/* .banner h1 {
   color: aliceblue;
   font-size: 111px;
   font-size-adjust: 0.58;
   display: block;
-}
-
-/* react-pdf */
-
-.react-pdf__Document {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.react-pdf__Page {
-  margin: 15px;
-  max-width: calc(100% - 32px);
-  box-shadow: 0 33px 39px 0 rgba(21, 36, 99, 0.66);
-  border-radius: 30px;
-}
-
-.react-pdf__Page canvas {
-  max-width: 100%;
-  height: auto !important;
-  border-radius: 30px;
-}
-
-/* .react-pdf__Page div span {
 } */
 
 /* social-icons */
 .social-icon-wrapper {
   padding: 10px;
+}
+
+button.navbar-toggler {
+  border-color: transparent;
+}
+
+nav.navbar .navbar-toggler:focus {
+  box-shadow: none;
 }

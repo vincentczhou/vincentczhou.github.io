@@ -1,6 +1,4 @@
-import React, { forwardRef } from 'react'
-
-// import { useHashScroll } from 'react-hash-scroll'
+import { forwardRef } from 'react'
 
 import Avatar from '@mui/material/Avatar'
 import Container from '@mui/material/Container'
@@ -23,12 +21,11 @@ const StyledLinearProgress = styled(LinearProgress)(() => ({
   borderRadius: 6,
 }))
 
-const Skills = forwardRef(({ hash, options }, ref) => {
-  // const scrollRef = useHashScroll(hash, options)
+const Skills = forwardRef((props, ref) => {
   return (
     <Container
       sx={{
-        padding: '150px 0px 150px 0px',
+        padding: '150px 15px 150px 15px',
         backgroundColor: '#0085ff',
         boxShadow: '0 33px 39px 0',
       }}

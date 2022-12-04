@@ -1,6 +1,4 @@
-import React, { forwardRef } from 'react'
-
-// import { useHashScroll } from 'react-hash-scroll'
+import { forwardRef } from 'react'
 
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -9,14 +7,12 @@ import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import { styled } from '@mui/material/styles'
 
-const Banner = forwardRef(({ hash, options }, ref) => {
-  // const scrollRef = useHashScroll(hash, options)
+const Banner = forwardRef((props, ref) => {
   return (
-    // <section className="banner" >
     <Container
       maxWidth="false"
       sx={{
-        padding: '666px 0px 444px 0px',
+        padding: '666px 15px 444px 15px',
         minHeight: '100px',
         backgroundImage: `url(./banner.jpg)`,
         backgroundRepeat: 'no-repeat',
@@ -34,7 +30,6 @@ const Banner = forwardRef(({ hash, options }, ref) => {
         </Col>
       </Row>
     </Container>
-    // </section>
   )
 })
 
