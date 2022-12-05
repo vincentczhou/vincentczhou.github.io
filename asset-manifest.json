@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.9ac0f456.css",
-    "main.js": "/static/js/main.48ced8d2.js",
+    "main.css": "/static/css/main.bb99c0e7.css",
+    "main.js": "/static/js/main.4f132f63.js",
     "static/js/787.1ed0c42c.chunk.js": "/static/js/787.1ed0c42c.chunk.js",
     "static/media/Comfortaa-VariableFont_wght.ttf": "/static/media/Comfortaa-VariableFont_wght.4d2ab5de91c4d193a69f.ttf",
     "static/media/node.js.svg": "/static/media/node.js.cccdafa931eebdaea49f5c5ac3ba232f.svg",
@@ -21,12 +21,12 @@
     "static/media/css.svg": "/static/media/css.3ec320225ef851ed26cf9fd1c6ebaa54.svg",
     "static/media/html.svg": "/static/media/html.c1bb84e022ca9d76984d4b943bd678fd.svg",
     "static/media/mail.svg": "/static/media/mail.94de00b35ad401c46894915c4bc55b39.svg",
-    "main.9ac0f456.css.map": "/static/css/main.9ac0f456.css.map",
-    "main.48ced8d2.js.map": "/static/js/main.48ced8d2.js.map",
+    "main.bb99c0e7.css.map": "/static/css/main.bb99c0e7.css.map",
+    "main.4f132f63.js.map": "/static/js/main.4f132f63.js.map",
     "787.1ed0c42c.chunk.js.map": "/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9ac0f456.css",
-    "static/js/main.48ced8d2.js"
+    "static/css/main.bb99c0e7.css",
+    "static/js/main.4f132f63.js"
   ]
 }
