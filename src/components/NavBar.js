@@ -18,14 +18,16 @@ import Typography from '@mui/material/Typography'
 import { List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import { SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material'
 import {
-  MenuRounded as MenuRoundedIcon,
-  MenuOpenRounded as MenuOpenRoundedIcon,
-  HomeRounded as HomeRoundedIcon,
+  DarkModeRounded as DarkModeRoundedIcon,
   DocumentScannerRounded as DocumentScannerRoundedIcon,
+  HomeRounded as HomeRoundedIcon,
   IntegrationInstructionsRounded as IntegrationInstructionsRoundedIcon,
+  LightModeRounded as LightModeRoundedIcon,
+  MenuOpenRounded as MenuOpenRoundedIcon,
+  MenuRounded as MenuRoundedIcon,
   SubtitlesRounded as SubtitlesRoundedIcon,
 } from '@mui/icons-material'
-import { styled } from '@mui/material/styles'
+import { styled, useTheme } from '@mui/material/styles'
 
 import SocialIcon from './social-icons'
 import { ReactComponent as Logo } from '../assets/img/logo.svg'
@@ -44,6 +46,7 @@ import siteMetadata from '../data/siteMetadata'
 const StyledAppBar = styled(AppBar, { shouldForwardProp: (prop) => prop !== 'shownav' })`
   position: fixed;
   padding: 21px;
+  color: inherit;
   top: 15px;
   border-radius: 60px;
   margin-right: 5%;
@@ -64,17 +67,19 @@ const StyledLogo = styled(Logo)`
     transition: 0.3s ease-in-out;
   }
 `
-const StyledHashLink = styled(HashLink, { shouldForwardProp: (prop) => prop !== 'active' })`
+const StyledHashLink = styled(HashLink, {
+  shouldForwardProp: (prop) => prop !== 'active' && prop !== 'transitioncolor',
+})`
   text-decoration: none;
   color: inherit;
 
   display: block;
-  padding: 8px 16px;
+  padding: 9px 18px;
 
-  ${(props) => (props.active ? 'color: pink;' : '')}
-  transition: all 0.3s ease-in-out;
+  ${(props) => (props.active ? `color: ${props.transitioncolor};` : '')}
   &:hover {
-    color: purple;
+    color: ${(props) => `${props.transitioncolor}`};
+    transition: all 0.3s ease-in-out;
   }
 
   // &:focus,
@@ -93,6 +98,8 @@ const actions = [
 ]
 
 const NavBar = ({ themeToggle }) => {
+  const theme = useTheme()
+
   const [activeLink, setActiveLink] = useState('')
   const updateActiveLink = (value) => setActiveLink(value)
 
@@ -171,6 +178,7 @@ const NavBar = ({ themeToggle }) => {
                   key={action.name}
                   to={`#${action.name.toLowerCase()}`}
                   active={activeLink === action.name ? true : false}
+                  transitioncolor={theme.palette.secondary.main}
                   onClick={() => updateActiveLink(`${action.name}`)}
                 >
                   <Typography variant="overline" display="block">
@@ -179,20 +187,44 @@ const NavBar = ({ themeToggle }) => {
                 </StyledHashLink>
               ))}
             </Box>
-            <Box sx={{ flex: '1' }}>
+            <Box sx={{ fill: theme.palette.text.primary, flex: '1' }}>
               <StyledLogo />
             </Box>
             <Box
-              sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end', flex: '1' }}
+              sx={{
+                display: { xs: 'none', md: 'flex' },
+                justifyContent: 'flex-end',
+                flex: '1',
+              }}
             >
-              <Button variant="outlined" size="medium">
-                <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} size="30" />
-              </Button>
-              <Button onClick={() => themeToggle()}>mode</Button>
-              <SocialIcon kind="github" href={siteMetadata.github} size="30" />
-              <SocialIcon kind="linkedin" href={siteMetadata.linkedin} size="30" />
+              <SocialIcon
+                kind="mail"
+                href={`mailto:${siteMetadata.email}`}
+                size="30"
+                color={theme.palette.text.primary}
+                sx={{ justifyContent: 'center', alignItems: 'center' }}
+              />
+              <SocialIcon
+                kind="github"
+                href={siteMetadata.github}
+                size="30"
+                color={theme.palette.text.primary}
+              />
+              <SocialIcon
+                kind="linkedin"
+                href={siteMetadata.linkedin}
+                size="30"
+                color={theme.palette.text.primary}
+              />
               {/* <SocialIcon kind="ctftime" href={siteMetadata.ctftime} size="30" /> */}
               {/* <SocialIcon kind="homepage" href={siteMetadata.homepage} size="30" /> */}
+              <IconButton onClick={() => themeToggle()} color="inherit">
+                {theme.palette.mode === 'dark' ? (
+                  <DarkModeRoundedIcon sx={{ width: `30px`, height: `30px` }} />
+                ) : (
+                  <LightModeRoundedIcon sx={{ width: `30px`, height: `30px` }} />
+                )}
+              </IconButton>
             </Box>
             <Box sx={{ display: { xs: 'flex', md: 'none' }, flex: '1' }} />
           </Toolbar>
@@ -207,6 +239,7 @@ const NavBar = ({ themeToggle }) => {
                 <StyledHashLink
                   to={`#${action.name.toLowerCase()}`}
                   active={activeLink === action.name ? true : false}
+                  transitioncolor={theme.palette.secondary.main}
                   onClick={() => updateActiveLink(`${action.name}`)}
                 >
                   <ListItemButton sx={{ textAlign: 'center' }}>
@@ -241,6 +274,7 @@ const NavBar = ({ themeToggle }) => {
               <StyledHashLink
                 to={`#${action.name.toLowerCase()}`}
                 active={activeLink === action.name ? true : false}
+                transitioncolor={theme.palette.secondary.main}
                 onClick={() => updateActiveLink(`${action.name}`)}
               >
                 {action.icon}

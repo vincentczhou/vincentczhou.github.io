@@ -1,21 +1,21 @@
 const siteMetadata = {
-  title: 'Bellevue College InfoSec Club',
-  author: 'BC InfoSec',
+  title: 'Vincent Chau',
+  author: 'Vincent C.',
   dev: 'Vincent C.',
-  headerTitle: 'Bellevue College InfoSec Club',
-  description: "Home to Bellevue College's CTF Team!",
+  headerTitle: 'Vincent Chau',
+  description: 'Welcome to my Website!',
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://www.bcinfosec.me',
+  siteUrl: 'https://www.vincentczhou.github.io',
   siteRepo: 'https://www.github.com/vincentczhou/InfoSec-Club-Site',
   siteLogo: '/static/images/avatars/default.png',
   image: '/static/images/avatars/default.png',
   socialBanner: '/static/images/avatars/default.png',
-  email: 'infosec@bellevuecollege.edu.com',
+  email: 'vincent.chau@bellevuecollege.edu.com',
   github: 'https://www.github.com/vincentczhou',
   linkedin: '',
   ctftime: 'https://www.ctftime.com',
-  homepage: 'https://www.bellevuecollege.edu/organizations/list/infosec-club',
+  homepage: 'https://www.vincentczhou.github.io',
   locale: 'en-US',
 }
 

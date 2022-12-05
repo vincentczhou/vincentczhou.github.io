@@ -6,7 +6,10 @@ const projectsData = [
     and more. Google has many features to help you find exactly what you're looking
     for.`,
     bannerSrc: 'https://cdn.pixabay.com/photo/2022/11/09/12/23/lotus-7580478_960_720.jpg',
-    imgSrc: ['../projects/pilplupsupport/1.png', '../projects/pilplupsupport/2.png'],
+    imgSrc: [
+      '../static/images/projects/pilplupsupport/1.PNG',
+      '../static/images/projects/pilplupsupport/2.PNG',
+    ],
     href: 'https://www.google.com',
   },
   {
@@ -14,7 +17,10 @@ const projectsData = [
     summary: 'Web App',
     description: `asdfdsaf`,
     bannerSrc: 'https://cdn.pixabay.com/photo/2014/04/14/20/11/pink-324175_960_720.jpg',
-    imgSrc: ['../projects/maitools/1.png', '../projects/maitools/2.png'],
+    imgSrc: [
+      '../static/images/projects/maitools/1.png',
+      '../static/images/projects/maitools/2.png',
+    ],
     href: 'https://www.google.com',
   },
   {
@@ -24,7 +30,11 @@ const projectsData = [
     and more. Google has many features to help you find exactly what you're looking
     for.`,
     bannerSrc: 'https://cdn.pixabay.com/photo/2022/11/09/12/23/lotus-7580478_960_720.jpg',
-    imgSrc: ['../projects/maihome/1.jpg', '../projects/maihome/2.jpg', '../projects/maihome/3.jpg'],
+    imgSrc: [
+      '../static/images/projects/maihome/1.jpg',
+      '../static/images/projects/maihome/2.jpg',
+      '../static/images/projects/maihome/3.jpg',
+    ],
     href: 'https://www.google.com',
   },
   {
@@ -32,7 +42,7 @@ const projectsData = [
     summary: 'Web App',
     description: `asdfdsaf`,
     bannerSrc: 'https://cdn.pixabay.com/photo/2014/04/14/20/11/pink-324175_960_720.jpg',
-    imgSrc: ['../projects/bcinfosec/1.png'],
+    imgSrc: ['../static/images/projects/bcinfosec/1.PNG'],
     href: 'https://www.google.com',
   },
   {

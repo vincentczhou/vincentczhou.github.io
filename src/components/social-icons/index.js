@@ -1,3 +1,6 @@
+import Link from '@mui/material/Link'
+import SvgIcon from '@mui/material/SvgIcon'
+
 import { ReactComponent as Mail } from './mail.svg'
 import { ReactComponent as Github } from './github.svg'
 import { ReactComponent as Linkedin } from './linkedin.svg'
@@ -14,16 +17,26 @@ const components = {
   homepage: Homepage,
 }
 
-const SocialIcon = ({ kind, href, size = 8 }) => {
+const SocialIcon = ({ kind, href, size = 8, color }) => {
   if (!href || (kind === 'mail' && !/^mailto:\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(href)))
     return null
 
   const SocialSvg = components[kind]
 
   return (
-    <a className="social-icon-wrapper" target="_blank" rel="noopener noreferrer" href={href}>
-      <SocialSvg src={SocialSvg} alt={kind} width={size} height={size} />
-    </a>
+    <Link
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      sx={{ '&:hover': { color: 'inherit' } }}
+    >
+      <SvgIcon
+        component={SocialSvg}
+        htmlColor={color}
+        sx={{ width: `${size}px`, height: `${size}px`, margin: '9px 18px' }}
+        inheritViewBox
+      />
+    </Link>
   )
 }
 

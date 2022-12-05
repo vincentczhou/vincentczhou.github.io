@@ -1,12 +1,14 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { HelmetProvider } from 'react-helmet-async'
 import { BrowserRouter } from 'react-router-dom'
 import CssBaseline from '@mui/material/CssBaseline'
 
 import useMediaQuery from '@mui/material/useMediaQuery'
 
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { PageSEO } from './components/SEO'
 import NavBar from './components/NavBar'
 import Banner from './components/Banner'
 import Resume from './components/Resume'
@@ -14,6 +16,8 @@ import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Footer from './components/Footer'
 import { amber, blueGrey, purple } from '@mui/material/colors'
+
+import siteMetadata from './data/siteMetadata'
 
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
@@ -67,26 +71,28 @@ function App() {
     const scrollRef = window.location.hash
       ? window.location.hash.toLowerCase().replace(/\W/g, '')
       : window.location.pathname.toLowerCase().replace(/\W/g, '')
-    console.log(scrollRef)
     if (resumeLoaded && Refs[scrollRef]) {
       Refs[scrollRef].current.scrollIntoView({ behavior: 'smooth' })
     }
   }, [resumeLoaded])
 
   return (
-    <div className="App">
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <BrowserRouter>
-          <NavBar themeToggle={toggleMode} />
-          <Banner ref={homeRef} />
-          <Resume ref={resumeRef} resumeLoad={setResumeLoaded} />
-          <Skills ref={skillsRef} />
-          <Projects ref={projectsRef} />
-          <Footer />
-        </BrowserRouter>
-      </ThemeProvider>
-    </div>
+    <HelmetProvider>
+      <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
+      <div className="App">
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <BrowserRouter>
+            <NavBar themeToggle={toggleMode} />
+            <Banner ref={homeRef} />
+            <Resume ref={resumeRef} resumeLoad={setResumeLoaded} />
+            <Skills ref={skillsRef} />
+            <Projects ref={projectsRef} />
+            <Footer />
+          </BrowserRouter>
+        </ThemeProvider>
+      </div>
+    </HelmetProvider>
   )
 }
 

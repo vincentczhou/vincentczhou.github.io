@@ -14,7 +14,7 @@ const Banner = forwardRef((props, ref) => {
       sx={{
         padding: '666px 15px 444px 15px',
         minHeight: '100px',
-        backgroundImage: `url(./banner.jpg)`,
+        backgroundImage: `url(./static/images/banner.JPG)`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
       }}
