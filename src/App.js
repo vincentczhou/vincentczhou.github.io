@@ -34,19 +34,20 @@ function App() {
         palette: {
           mode: `${mode}`,
           primary: {
-            // main: '#84b6ff',
-            ...blueGrey,
-            ...(mode === 'dark' && {
-              main: amber[300],
-            }),
+            main: '#3daed5',
+            // ...blueGrey,
+            ...(mode === 'dark' &&
+              {
+                // main: amber[300],
+              }),
           },
           secondary: {
-            main: '#c5a088',
+            main: '#c2e0f9',
           },
           background: {
-            default: '#FBF7F5',
+            default: '#faf9f6',
             ...(mode === 'dark' && {
-              default: '#918d8b',
+              default: '#3d3c3a',
             }),
           },
         },

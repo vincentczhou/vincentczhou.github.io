@@ -202,7 +202,6 @@ const NavBar = ({ themeToggle }) => {
                 href={`mailto:${siteMetadata.email}`}
                 size="30"
                 color={theme.palette.text.primary}
-                sx={{ justifyContent: 'center', alignItems: 'center' }}
               />
               <SocialIcon
                 kind="github"

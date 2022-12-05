@@ -92,13 +92,15 @@ const Resume = forwardRef(({ resumeLoad }, ref) => {
     <Container
       sx={{
         padding: '150px 15px 150px 15px',
-        backgroundColor: '#0072ff',
-        boxShadow: '0 33px 39px 0',
+        // backgroundColor: '#0072ff',
+        // boxShadow: '0 33px 39px 0',
       }}
       id="resume"
       ref={ref}
     >
-      <Typography variant="h1">Resume</Typography>
+      <Typography variant="h1" sx={{ padding: '0px 0px 150px 0px' }}>
+        Resume
+      </Typography>
       <StyledDocument
         file={file}
         loading={<CircularProgress variant="determinate" value={progress} />}

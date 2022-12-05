@@ -26,13 +26,15 @@ const Skills = forwardRef((props, ref) => {
     <Container
       sx={{
         padding: '150px 15px 150px 15px',
-        backgroundColor: '#0085ff',
-        boxShadow: '0 33px 39px 0',
+        // backgroundColor: '#0085ff',
+        // boxShadow: '0 33px 39px 0',
       }}
       id="skills"
       ref={ref}
     >
-      <Typography variant="h1">Skills</Typography>
+      <Typography variant="h1" sx={{ padding: '0px 0px 150px 0px' }}>
+        Skills
+      </Typography>
       <Grid2 container spacing={3}>
         {skillData.map((data) => (
           <StyledGrid2 xs="auto" key={data.name}>

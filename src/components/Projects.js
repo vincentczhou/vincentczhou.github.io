@@ -36,12 +36,14 @@ const Projects = forwardRef((props, ref) => {
       sx={{
         padding: '150px 15px 150px 15px',
         // backgroundColor: '#0094ff',
-        boxShadow: '0 33px 39px 0',
+        // boxShadow: '0 33px 39px 0',
       }}
       id="projects"
       ref={ref}
     >
-      <Typography variant="h1">Projects</Typography>
+      <Typography variant="h1" sx={{ padding: '0px 0px 150px 0px' }}>
+        Projects
+      </Typography>
       <Grid2
         container
         spacing={1}
@@ -84,6 +86,7 @@ const Projects = forwardRef((props, ref) => {
                               {data.summary}
                             </Fragment>
                           }
+                          sx={{ marginLeft: '3px' }}
                         />
                       </ListItemButton>
                     </ListItem>
@@ -120,7 +123,7 @@ const Projects = forwardRef((props, ref) => {
                 </CardContent>
                 <CardActions>
                   <Typography variant="body2" color="text.secondary">
-                    asdf
+                    [WIP]
                   </Typography>
                 </CardActions>
               </Card>
