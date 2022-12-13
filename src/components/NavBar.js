@@ -201,19 +201,37 @@ const NavBar = ({ themeToggle }) => {
                 kind="mail"
                 href={`mailto:${siteMetadata.email}`}
                 size="30"
-                color={theme.palette.text.primary}
+                sx={{
+                  color: theme.palette.text.primary,
+                  '&:hover': {
+                    color: theme.palette.secondary.main,
+                    transition: 'all 0.3s ease-in-out',
+                  },
+                }}
               />
               <SocialIcon
                 kind="github"
                 href={siteMetadata.github}
                 size="30"
-                color={theme.palette.text.primary}
+                sx={{
+                  color: theme.palette.text.primary,
+                  '&:hover': {
+                    color: theme.palette.secondary.main,
+                    transition: 'all 0.3s ease-in-out',
+                  },
+                }}
               />
               <SocialIcon
                 kind="linkedin"
                 href={siteMetadata.linkedin}
                 size="30"
-                color={theme.palette.text.primary}
+                sx={{
+                  color: theme.palette.text.primary,
+                  '&:hover': {
+                    color: theme.palette.secondary.main,
+                    transition: 'all 0.3s ease-in-out',
+                  },
+                }}
               />
               {/* <SocialIcon kind="ctftime" href={siteMetadata.ctftime} size="30" /> */}
               {/* <SocialIcon kind="homepage" href={siteMetadata.homepage} size="30" /> */}
@@ -266,25 +284,28 @@ const NavBar = ({ themeToggle }) => {
         open={speedDialState}
         ref={speedDialRef}
       >
-        {actions.map((action) => (
-          <SpeedDialAction
-            key={action.name}
-            icon={
-              <StyledHashLink
-                to={`#${action.name.toLowerCase()}`}
-                active={activeLink === action.name ? true : false}
-                transitioncolor={theme.palette.secondary.main}
-                onClick={() => updateActiveLink(`${action.name}`)}
-              >
-                {action.icon}
-              </StyledHashLink>
-            }
-            tooltipTitle={action.name}
-            tooltipOpen
-            tooltipPlacement="left"
-            onClick={handleSpeedDialClose}
-          />
-        ))}
+        {actions
+          .slice(0)
+          .reverse()
+          .map((action) => (
+            <SpeedDialAction
+              key={action.name}
+              icon={
+                <StyledHashLink
+                  to={`#${action.name.toLowerCase()}`}
+                  active={activeLink === action.name ? true : false}
+                  transitioncolor={theme.palette.secondary.main}
+                  onClick={() => updateActiveLink(`${action.name}`)}
+                >
+                  {action.icon}
+                </StyledHashLink>
+              }
+              tooltipTitle={action.name}
+              tooltipOpen
+              tooltipPlacement="left"
+              onClick={handleSpeedDialClose}
+            />
+          ))}
       </SpeedDial>
     </Container>
   )

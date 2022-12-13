@@ -17,22 +17,17 @@ const components = {
   homepage: Homepage,
 }
 
-const SocialIcon = ({ kind, href, size = 8, color }) => {
+const SocialIcon = ({ kind, href, size = 8, sx }) => {
   if (!href || (kind === 'mail' && !/^mailto:\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(href)))
     return null
 
   const SocialSvg = components[kind]
 
   return (
-    <Link
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      sx={{ '&:hover': { color: 'inherit' } }}
-    >
+    <Link href={href} target="_blank" rel="noopener noreferrer" sx={sx}>
       <SvgIcon
         component={SocialSvg}
-        htmlColor={color}
+        // htmlColor={color}
         sx={{ width: `${size}px`, height: `${size}px`, margin: '9px 18px' }}
         inheritViewBox
       />

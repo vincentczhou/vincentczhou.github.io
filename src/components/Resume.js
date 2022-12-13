@@ -6,6 +6,7 @@ import 'react-pdf/dist/esm/Page/TextLayer.css'
 
 import Container from '@mui/material/Container'
 import CircularProgress from '@mui/material/CircularProgress'
+import Paper from '@mui/material/Paper'
 import Skeleton from '@mui/material/Skeleton'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
@@ -38,7 +39,7 @@ const StyledDocument = styled(Document)`
 const StyledPage = styled(Page)`
   margin: 15px;
   max-width: calc(100% - 32px);
-  box-shadow: 0 33px 39px 0 rgba(21, 36, 99, 0.66);
+  // box-shadow: 0 33px 39px 0 rgba(21, 36, 99, 0.66);
   border-radius: 30px;
 
   & canvas {
@@ -108,39 +109,57 @@ const Resume = forwardRef(({ resumeLoad }, ref) => {
         onLoadSuccess={onDocumentLoadSuccess}
         options={options}
       >
-        <StyledPage
-          width={ref.current?.getBoundingClientRect().width * 0.9 || undefined}
-          loading={
-            <Stack spacing={1} sx={{ padding: 3, width: 300 }}>
-              <Skeleton variant="text" sx={{ fontSize: '32px' }} />
-              <Skeleton variant="circular" width={69} height={69} />
-              <Skeleton variant="rounded" width={251} height={90} />
-              <Skeleton variant="rounded" width={251} height={90} />
-              <Skeleton variant="rounded" width={251} height={90} />
-              <Skeleton variant="text" sx={{ fontSize: '32px' }} />
-            </Stack>
-          }
-          onLoadSuccess={() => resumeLoad(true)}
-          pageNumber={pageNumber}
-          renderAnnotationLayer={true}
-          renderTextLayer={true}
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}
-          onClick={onClick}
-        />
+        <Paper elevation={21} sx={{ borderRadius: '30px' }}>
+          <StyledPage
+            width={ref.current?.getBoundingClientRect().width * 0.9 || undefined}
+            loading={
+              <Stack spacing={1} sx={{ padding: 3, width: 300 }}>
+                <Skeleton variant="text" sx={{ fontSize: '32px' }} />
+                <Skeleton variant="circular" width={69} height={69} />
+                <Skeleton variant="rounded" width={251} height={90} />
+                <Skeleton variant="rounded" width={251} height={90} />
+                <Skeleton variant="rounded" width={251} height={90} />
+                <Skeleton variant="text" sx={{ fontSize: '32px' }} />
+              </Stack>
+            }
+            onLoadSuccess={() => resumeLoad(true)}
+            pageNumber={pageNumber}
+            renderAnnotationLayer={true}
+            renderTextLayer={true}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+            onClick={onClick}
+          />
+        </Paper>
         <StyledButtonGroup
           variant="contained"
           aria-label="outlined primary button group"
           showbuttongroup={showButtonGroup}
           onMouseEnter={onMouseEnter}
         >
-          <Button disabled={pageNumber <= 1} onClick={previousPage}>
+          <Button
+            disabled={pageNumber <= 1}
+            onClick={previousPage}
+            sx={{ borderRight: 'none !important' }}
+          >
             <ArrowCircleLeftRoundedIcon />
           </Button>
-          <Button disableRipple={true} fullWidth={true} variant="string">
+          <Button
+            disableRipple={true}
+            fullWidth={true}
+            variant="string"
+            sx={{
+              borderRight: 'none !important',
+              color: 'rgba(0, 0, 0, 1) !important',
+            }}
+          >
             {pageNumber}/{numPages}
           </Button>
-          <Button disabled={pageNumber >= numPages} onClick={nextPage}>
+          <Button
+            disabled={pageNumber >= numPages}
+            onClick={nextPage}
+            sx={{ borderRight: 'none !important' }}
+          >
             <ArrowCircleRightRoundedIcon />
           </Button>
         </StyledButtonGroup>

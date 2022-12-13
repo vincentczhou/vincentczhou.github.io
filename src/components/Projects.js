@@ -9,21 +9,49 @@ import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import { Card, CardActions, CardContent } from '@mui/material'
 import { List, ListItem, ListItemButton, ListItemText } from '@mui/material'
-import { styled } from '@mui/material/styles'
+import { styled, useTheme } from '@mui/material/styles'
 
 import projectsData from '../data/projectsData'
 
-const StyledCarousel = styled(Carousel)`
+const StyledCarousel = styled(Carousel, { shouldForwardProp: (prop) => prop !== 'theme' })`
   height: 700px;
+
+  & .carousel-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  ${(props) =>
+    props.theme.palette.mode !== 'dark'
+      ? `
+  & .carousel-indicators {
+    filter: invert(50%);
+  }
+  & .carousel-control-prev {
+    filter: invert(50%);
+  }
+  & .carousel-control-next {
+    filter: invert(50%);
+  }
+  `
+      : ''}
 `
 
 const StyledImage = styled('img')`
+  // justify-content: center;
+  // align-items: center;
+  // transform: translateY(50%);
   object-fit: contain;
   max-width: 900px;
   max-height: 700px;
 `
 
 const Projects = forwardRef((props, ref) => {
+  const theme = useTheme()
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   const handleListItemClick = (event, index) => {
@@ -102,7 +130,7 @@ const Projects = forwardRef((props, ref) => {
             <Paper elevation={21}>
               {/* <Card sx={{ width: '900px', height: '900px', overflow: 'auto' }}> */}
               <Card sx={{ overflow: 'auto' }}>
-                <StyledCarousel>
+                <StyledCarousel theme={theme}>
                   {projectsData[selectedIndex].imgSrc.map((data) => (
                     <Carousel.Item>
                       <StyledImage src={data} alt="First slide" />
@@ -131,6 +159,17 @@ const Projects = forwardRef((props, ref) => {
           </Box>
         </Grid2>
       </Grid2>
+      <StyledCarousel theme={theme}>
+        {projectsData[selectedIndex].imgSrc.map((data) => (
+          <Carousel.Item>
+            <StyledImage src={data} alt="First slide" />
+            {/* <Carousel.Caption>
+                        <h3>First slide label</h3>
+                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                      </Carousel.Caption> */}
+          </Carousel.Item>
+        ))}
+      </StyledCarousel>
     </Container>
   )
 })
