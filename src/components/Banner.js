@@ -11,9 +11,10 @@ import Typography from '@mui/material/Typography'
 import { styled } from '@mui/material/styles'
 
 const StyledImage = styled('img')`
-  width: 720px;
-  height: 405px;
-
+  max-width: 720px;
+  // height: 405px;
+  width: 100%;
+  height: 100%;
   border-radius: 30px;
 `
 
@@ -42,8 +43,11 @@ const Banner = forwardRef((props, ref) => {
       </Row> */}
       {/* <Grid2 container spacing={3} sx={{ flexGrow: 1 }} columns={15}>
        */}
-      <Grid2 container sx={{ padding: '0px', justifyContent: 'center', alignItems: 'center' }}>
-        <Grid2 xs={5}>
+      <Grid2
+        container
+        sx={{ padding: '0px', justifyContent: 'space-evenly', alignItems: 'center' }}
+      >
+        <Grid2 xs={12} lg={5}>
           <Typography variant="h1">Hi! I'm Vincent.</Typography>
           <Typography variant="body1">
             I'm currently an engineering student at Bellevue College, as well as the President of
@@ -54,15 +58,18 @@ const Banner = forwardRef((props, ref) => {
           </Button>
           <div>Site is [WIP]</div>
         </Grid2>
-        <Grid2 xs="auto" mdOffset={1}>
+        <Grid2 container xs={12} lg="auto" sx={{ justifyContent: 'center' }}>
           <Paper
             elevation={15}
             sx={{
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              width: '780px',
-              height: '465px',
+              maxWidth: '780px',
+              maxHeight: '465px',
+              width: '100%',
+              height: '100%',
+              padding: '30px',
               borderRadius: '30px',
             }}
           >

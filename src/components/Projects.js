@@ -6,6 +6,7 @@ import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Grid2 from '@mui/material/Unstable_Grid2'
 import Paper from '@mui/material/Paper'
+import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { Card, CardActions, CardContent } from '@mui/material'
 import { List, ListItem, ListItemButton, ListItemText } from '@mui/material'
@@ -23,6 +24,15 @@ const StyledCarousel = styled(Carousel, { shouldForwardProp: (prop) => prop !== 
     width: 100%;
     height: 100%;
     overflow: hidden;
+  }
+
+  & .carousel-item-next,
+  .carousel-item-prev,
+  .carousel-item.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
   }
 
   ${(props) =>
@@ -46,8 +56,12 @@ const StyledImage = styled('img')`
   // align-items: center;
   // transform: translateY(50%);
   object-fit: contain;
-  max-width: 900px;
-  max-height: 700px;
+  // max-width: 900px;
+  // max-height: 700px;
+  // max-width: 100%;
+  // max-height: 100%;
+  max-width: min(100%, 900px);
+  max-height: min(100%, 700px);
 `
 
 const Projects = forwardRef((props, ref) => {
@@ -78,7 +92,15 @@ const Projects = forwardRef((props, ref) => {
         // sx={{ flexGrow: 1 }}
         columns={15}
       >
-        <Grid2 xs={6}>
+        <Grid2
+          lg={6}
+          sx={{
+            display: { xs: 'none', lg: 'flex' },
+            padding: '0px',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
           <Box
             sx={{
               display: 'flex',
@@ -90,31 +112,24 @@ const Projects = forwardRef((props, ref) => {
             {/* <Paper elevation={21} sx={{ height: 600, maxHeight: 600, overflow: 'auto' }}> */}
             <Paper
               elevation={21}
-              sx={{ maxHeight: '666px', overflow: 'auto', borderRadius: '15px' }}
+              sx={{ maxHeight: '900px', overflow: 'auto', borderRadius: '15px' }}
             >
-              <List sx={{ bgcolor: 'background.paper', borderRadius: '15px' }}>
+              <List sx={{ overflow: 'auto', bgcolor: 'background.paper', borderRadius: '15px' }}>
                 {projectsData.map((data, index) => (
                   <Fragment key={data.title}>
-                    <ListItem alignItems="flex-start">
+                    <ListItem alignItems="flex-start" sx={{ maxWidth: '390px' }}>
                       <ListItemButton
                         selected={selectedIndex === index}
                         onClick={(event) => handleListItemClick(event, index)}
+                        sx={{ height: '100%' }}
                       >
-                        <img alt={data.title} src={data.bannerSrc} width="100px" />
+                        <img alt={data.title} src={data.bannerSrc} width="120px" />
                         <ListItemText
                           primary={data.title}
-                          secondary={
-                            <Fragment>
-                              <Typography
-                                sx={{ display: 'inline' }}
-                                component="span"
-                                variant="body2"
-                                color="text.primary"
-                              ></Typography>
-                              {data.summary}
-                            </Fragment>
-                          }
-                          sx={{ marginLeft: '3px' }}
+                          primaryTypographyProps={{ noWrap: true }}
+                          secondary={data.summary}
+                          secondaryTypographyProps={{ noWrap: true }}
+                          sx={{ marginLeft: '9px' }}
                         />
                       </ListItemButton>
                     </ListItem>
@@ -125,11 +140,15 @@ const Projects = forwardRef((props, ref) => {
           </Box>
         </Grid2>
         {/* aaaaaaaaaaa */}
-        <Grid2 xs={9}>
+        <Grid2
+          xs={15}
+          lg={9}
+          sx={{ padding: '0px', justifyContent: 'center', alignItems: 'center' }}
+        >
           <Box>
-            <Paper elevation={21}>
+            <Paper elevation={21} sx={{ borderRadius: '15px' }}>
               {/* <Card sx={{ width: '900px', height: '900px', overflow: 'auto' }}> */}
-              <Card sx={{ overflow: 'auto' }}>
+              <Card sx={{ overflow: 'visible', borderRadius: '15px', height: '900px' }}>
                 <StyledCarousel theme={theme}>
                   {projectsData[selectedIndex].imgSrc.map((data) => (
                     <Carousel.Item>
@@ -145,7 +164,7 @@ const Projects = forwardRef((props, ref) => {
                   <Typography gutterBottom variant="h5" component="div">
                     {projectsData[selectedIndex].title}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" color="text.secondary" noWrap>
                     {projectsData[selectedIndex].description}
                   </Typography>
                 </CardContent>
@@ -158,18 +177,38 @@ const Projects = forwardRef((props, ref) => {
             </Paper>
           </Box>
         </Grid2>
+        {/* aaaaaaaaaaa */}
+        <Grid2 xs={15} sx={{ display: { xs: 'flex', lg: 'none' } }}>
+          <Paper elevation={21} sx={{ overflow: 'auto', borderRadius: '15px' }}>
+            <List
+              component={Stack}
+              direction="row"
+              sx={{ overflow: 'auto', bgcolor: 'background.paper', borderRadius: '15px' }}
+            >
+              {projectsData.map((data, index) => (
+                <Fragment key={data.title}>
+                  <ListItem alignItems="flex-start" sx={{ maxWidth: '390px' }}>
+                    <ListItemButton
+                      selected={selectedIndex === index}
+                      onClick={(event) => handleListItemClick(event, index)}
+                      sx={{ height: '100%' }}
+                    >
+                      <img alt={data.title} src={data.bannerSrc} width="120px" />
+                      <ListItemText
+                        primary={data.title}
+                        primaryTypographyProps={{ noWrap: true }}
+                        secondary={data.summary}
+                        secondaryTypographyProps={{ noWrap: true }}
+                        sx={{ marginLeft: '9px' }}
+                      />
+                    </ListItemButton>
+                  </ListItem>
+                </Fragment>
+              ))}
+            </List>
+          </Paper>
+        </Grid2>
       </Grid2>
-      <StyledCarousel theme={theme}>
-        {projectsData[selectedIndex].imgSrc.map((data) => (
-          <Carousel.Item>
-            <StyledImage src={data} alt="First slide" />
-            {/* <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                      </Carousel.Caption> */}
-          </Carousel.Item>
-        ))}
-      </StyledCarousel>
     </Container>
   )
 })

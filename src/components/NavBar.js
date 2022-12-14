@@ -11,6 +11,7 @@ import Backdrop from '@mui/material/Backdrop'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
+import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
 import SwipeableDrawer from '@mui/material/SwipeableDrawer'
 import Toolbar from '@mui/material/Toolbar'
@@ -57,24 +58,26 @@ const StyledAppBar = styled(AppBar, { shouldForwardProp: (prop) => prop !== 'sho
   & .navbar-toggler {
   }
 `
-const StyledLogo = styled(Logo)`
+const StyledLogo = styled(Logo, { shouldForwardProp: (prop) => prop !== 'transitioncolor' })`
   width: 90px;
   justify-content: center;
   align-items: center;
   &:hover {
-    fill: #00c8f0;
+    fill: ${(props) => `${props.transitioncolor}`};
     transform: scale(1.1);
     transition: 0.3s ease-in-out;
   }
 `
 const StyledHashLink = styled(HashLink, {
-  shouldForwardProp: (prop) => prop !== 'active' && prop !== 'transitioncolor',
+  shouldForwardProp: (prop) => prop !== 'active' && prop !== 'drawer' && prop !== 'transitioncolor',
 })`
   text-decoration: none;
   color: inherit;
 
   display: block;
   padding: 9px 18px;
+
+  ${(props) => (props.drawer ? 'width: 100%;' : '')}
 
   ${(props) => (props.active ? `color: ${props.transitioncolor};` : '')}
   &:hover {
@@ -102,6 +105,7 @@ const NavBar = ({ themeToggle }) => {
 
   const [activeLink, setActiveLink] = useState('')
   const updateActiveLink = (value) => setActiveLink(value)
+  const isActive = (actionName) => (activeLink === actionName ? true : false)
 
   const [showNav, setShowNav] = useState(true)
   useEffect(() => {
@@ -133,7 +137,7 @@ const NavBar = ({ themeToggle }) => {
 
   return (
     <Container>
-      {/* <StyledNavbar shownav={showNav} bg="light" expand="md" fixed="top">
+      {/* <StyledNavbar shownav={showNav} bg="light" expand="lg" fixed="top">
         <Navbar.Brand className="position-absolute top-50 start-50 translate-middle" href="#home">
           <StyledLogo />
         </Navbar.Brand>
@@ -167,17 +171,17 @@ const NavBar = ({ themeToggle }) => {
       <StyledAppBar shownav={showNav}>
         <Container maxWidth="xl">
           <Toolbar sx={{ display: 'flex', alignItems: 'center' }} disableGutters>
-            <Box sx={{ display: { xs: 'flex', md: 'none' }, flex: '1' }}>
+            <Box sx={{ display: { xs: 'flex', lg: 'none' }, flex: '1' }}>
               <IconButton size="large" edge="start" onClick={handleDrawerToggle}>
                 {drawerState ? <MenuOpenRoundedIcon /> : <MenuRoundedIcon />}
               </IconButton>
             </Box>
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, flex: '1' }}>
+            <Box sx={{ display: { xs: 'none', lg: 'flex' }, flex: '1', width: '0' }}>
               {actions.map((action) => (
                 <StyledHashLink
                   key={action.name}
                   to={`#${action.name.toLowerCase()}`}
-                  active={activeLink === action.name ? true : false}
+                  active={isActive(action.name)}
                   transitioncolor={theme.palette.secondary.main}
                   onClick={() => updateActiveLink(`${action.name}`)}
                 >
@@ -188,11 +192,13 @@ const NavBar = ({ themeToggle }) => {
               ))}
             </Box>
             <Box sx={{ fill: theme.palette.text.primary, flex: '1' }}>
-              <StyledLogo />
+              <HashLink to="#home">
+                <StyledLogo transitioncolor={theme.palette.secondary.main} />
+              </HashLink>
             </Box>
             <Box
               sx={{
-                display: { xs: 'none', md: 'flex' },
+                display: { xs: 'none', lg: 'flex' },
                 justifyContent: 'flex-end',
                 flex: '1',
               }}
@@ -243,29 +249,81 @@ const NavBar = ({ themeToggle }) => {
                 )}
               </IconButton>
             </Box>
-            <Box sx={{ display: { xs: 'flex', md: 'none' }, flex: '1' }} />
+            <Box sx={{ display: { xs: 'flex', lg: 'none' }, flex: '1' }} />
           </Toolbar>
         </Container>
       </StyledAppBar>
       {/* saASasdasd */}
       <SwipeableDrawer onOpen={handleDrawerOpen} onClose={handleDrawerClose} open={drawerState}>
-        <Box onClick={handleDrawerClose} sx={{ textAlign: 'center' }}>
+        <Box onClick={handleDrawerClose} sx={{ width: '300px', textAlign: 'center' }}>
           <List>
             {actions.map((action) => (
               <ListItem key={action.name} disablePadding>
                 <StyledHashLink
                   to={`#${action.name.toLowerCase()}`}
-                  active={activeLink === action.name ? true : false}
+                  active={isActive(action.name)}
                   transitioncolor={theme.palette.secondary.main}
                   onClick={() => updateActiveLink(`${action.name}`)}
+                  drawer
                 >
-                  <ListItemButton sx={{ textAlign: 'center' }}>
-                    <ListItemIcon>{action.icon}</ListItemIcon>
+                  <ListItemButton selected={isActive(action.name)}>
+                    <ListItemIcon sx={{ color: 'inherit' }}>{action.icon}</ListItemIcon>
                     <ListItemText primary={action.name} />
                   </ListItemButton>
                 </StyledHashLink>
               </ListItem>
             ))}
+            <Divider variant="middle" />
+            <ListItem>
+              <Box>
+                <SocialIcon
+                  kind="mail"
+                  href={`mailto:${siteMetadata.email}`}
+                  size="30"
+                  sx={{
+                    color: theme.palette.text.primary,
+                    '&:hover': {
+                      color: theme.palette.secondary.main,
+                      transition: 'all 0.3s ease-in-out',
+                    },
+                  }}
+                />
+                <SocialIcon
+                  kind="github"
+                  href={siteMetadata.github}
+                  size="30"
+                  sx={{
+                    color: theme.palette.text.primary,
+                    '&:hover': {
+                      color: theme.palette.secondary.main,
+                      transition: 'all 0.3s ease-in-out',
+                    },
+                  }}
+                />
+                <SocialIcon
+                  kind="linkedin"
+                  href={siteMetadata.linkedin}
+                  size="30"
+                  sx={{
+                    color: theme.palette.text.primary,
+                    '&:hover': {
+                      color: theme.palette.secondary.main,
+                      transition: 'all 0.3s ease-in-out',
+                    },
+                  }}
+                />
+                {/* <SocialIcon kind="ctftime" href={siteMetadata.ctftime} size="30" /> */}
+                {/* <SocialIcon kind="homepage" href={siteMetadata.homepage} size="30" /> */}
+
+                <IconButton onClick={() => themeToggle()} color="inherit">
+                  {theme.palette.mode === 'dark' ? (
+                    <DarkModeRoundedIcon sx={{ width: `30px`, height: `30px` }} />
+                  ) : (
+                    <LightModeRoundedIcon sx={{ width: `30px`, height: `30px` }} />
+                  )}
+                </IconButton>
+              </Box>
+            </ListItem>
           </List>
         </Box>
       </SwipeableDrawer>
@@ -293,7 +351,7 @@ const NavBar = ({ themeToggle }) => {
               icon={
                 <StyledHashLink
                   to={`#${action.name.toLowerCase()}`}
-                  active={activeLink === action.name ? true : false}
+                  active={isActive(action.name)}
                   transitioncolor={theme.palette.secondary.main}
                   onClick={() => updateActiveLink(`${action.name}`)}
                 >

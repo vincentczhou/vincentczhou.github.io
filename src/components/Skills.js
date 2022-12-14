@@ -35,7 +35,7 @@ const Skills = forwardRef((props, ref) => {
       <Typography variant="h1" sx={{ padding: '0px 0px 150px 0px' }}>
         Skills
       </Typography>
-      <Grid2 container spacing={3}>
+      <Grid2 container spacing={3} sx={{ justifyContent: 'center' }}>
         {skillData.map((data) => (
           <StyledGrid2 xs="auto" key={data.name}>
             <Tooltip title={data.tooltip}>
