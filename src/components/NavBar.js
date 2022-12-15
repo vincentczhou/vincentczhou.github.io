@@ -329,7 +329,7 @@ const NavBar = ({ themeToggle }) => {
       </SwipeableDrawer>
       {/* aaaaaaaaaa */}
 
-      <Backdrop open={speedDialState} />
+      <Backdrop open={speedDialState} sx={{ zIndex: theme.zIndex.speedDial }} />
       <SpeedDial
         ariaLabel="SpeedDial"
         hidden={showNav ? true : false}

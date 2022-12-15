@@ -3,15 +3,26 @@ import { forwardRef, Fragment, useState } from 'react'
 import Carousel from 'react-bootstrap/Carousel'
 
 import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Chip from '@mui/material/Chip'
 import Container from '@mui/material/Container'
 import Grid2 from '@mui/material/Unstable_Grid2'
+import IconButton from '@mui/material/IconButton'
 import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { Card, CardActions, CardContent } from '@mui/material'
-import { List, ListItem, ListItemButton, ListItemText } from '@mui/material'
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material'
+import { List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
+import {
+  CircleRounded as CircleRoundedIcon,
+  CloseRounded as CloseRoundedIcon,
+  RadioButtonCheckedRounded as RadioButtonCheckedRoundedIcon,
+  RadioButtonUncheckedRounded as RadioButtonUncheckedRoundedIcon,
+} from '@mui/icons-material'
 import { styled, useTheme } from '@mui/material/styles'
 
+import SocialIcon from './social-icons'
 import projectsData from '../data/projectsData'
 
 const StyledCarousel = styled(Carousel, { shouldForwardProp: (prop) => prop !== 'theme' })`
@@ -72,6 +83,11 @@ const Projects = forwardRef((props, ref) => {
     setSelectedIndex(index)
   }
 
+  const [dialogState, setDialogState] = useState(false)
+  const handleDialogOpen = () => setDialogState(true)
+  const handleDialogClose = () => setDialogState(false)
+  // const handleDialogToggle = () => setDialogState(!dialogState)
+
   return (
     <Container
       maxWidth="true"
@@ -91,9 +107,10 @@ const Projects = forwardRef((props, ref) => {
         spacing={1}
         // sx={{ flexGrow: 1 }}
         columns={15}
+        sx={{ justifyContent: 'center', alignItems: 'center' }}
       >
         <Grid2
-          lg={6}
+          lg={5}
           sx={{
             display: { xs: 'none', lg: 'flex' },
             padding: '0px',
@@ -148,7 +165,14 @@ const Projects = forwardRef((props, ref) => {
           <Box>
             <Paper elevation={21} sx={{ borderRadius: '15px' }}>
               {/* <Card sx={{ width: '900px', height: '900px', overflow: 'auto' }}> */}
-              <Card sx={{ overflow: 'visible', borderRadius: '15px', height: '900px' }}>
+              <Card
+                sx={{
+                  position: 'relative',
+                  overflow: 'visible',
+                  borderRadius: '15px',
+                  height: '900px',
+                }}
+              >
                 <StyledCarousel theme={theme}>
                   {projectsData[selectedIndex].imgSrc.map((data) => (
                     <Carousel.Item>
@@ -164,19 +188,152 @@ const Projects = forwardRef((props, ref) => {
                   <Typography gutterBottom variant="h5" component="div">
                     {projectsData[selectedIndex].title}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary" noWrap>
+                  <Typography gutterBottom variant="subtitle2" component="div">
+                    {projectsData[selectedIndex].summary}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      display: '-webkit-box',
+                      '-webkit-line-clamp': '3',
+                      '-webkit-box-orient': 'vertical',
+                    }}
+                  >
                     {projectsData[selectedIndex].description}
                   </Typography>
                 </CardContent>
-                <CardActions>
-                  <Typography variant="body2" color="text.secondary">
-                    [WIP]
-                  </Typography>
+                <CardActions
+                  sx={{
+                    position: 'absolute',
+                    bottom: '0',
+                    alignItems: 'center',
+                    // justifyContent: 'space-between',
+                    width: '100%',
+                    height: '5%',
+                    paddingLeft: '15px',
+                    paddingRight: '15px',
+                  }}
+                >
+                  <Box sx={{ display: 'flex', justifyContent: 'start', flex: '1' }}>
+                    {projectsData[selectedIndex].active ? (
+                      <Chip
+                        label="Active"
+                        color="success"
+                        size="small"
+                        icon={<RadioButtonCheckedRoundedIcon />}
+                      />
+                    ) : (
+                      <Chip
+                        label="Inactive"
+                        color="error"
+                        size="small"
+                        icon={<RadioButtonUncheckedRoundedIcon />}
+                      />
+                    )}
+                  </Box>
+                  <Box sx={{ display: 'flex', justifyContent: 'center', flex: '1' }}>
+                    <Button onClick={handleDialogOpen}>Learn More</Button>
+                  </Box>
+                  <Box sx={{ display: 'flex', justifyContent: 'end', flex: '1' }}>
+                    <SocialIcon
+                      kind="github"
+                      href={projectsData[selectedIndex].github}
+                      size="30"
+                      sx={{
+                        color: theme.palette.text.primary,
+                        '&:hover': {
+                          color: theme.palette.secondary.main,
+                          transition: 'all 0.3s ease-in-out',
+                        },
+                      }}
+                    />
+                  </Box>
                 </CardActions>
               </Card>
             </Paper>
           </Box>
         </Grid2>
+        {/* dialog */}
+        <Dialog open={dialogState} onClose={handleDialogClose}>
+          <DialogTitle>
+            <Typography gutterBottom variant="h5" component="div">
+              {projectsData[selectedIndex].title}
+            </Typography>
+            <Typography gutterBottom variant="subtitle2" component="div">
+              {projectsData[selectedIndex].summary}
+            </Typography>
+            <IconButton
+              onClick={handleDialogClose}
+              sx={{ position: 'absolute', right: 9, top: 9, color: 'text.secondary' }}
+            >
+              <CloseRoundedIcon />
+            </IconButton>
+          </DialogTitle>
+          <DialogContent dividers>
+            <Typography variant="body2" color="text.secondary">
+              {projectsData[selectedIndex].description}
+            </Typography>
+            {projectsData[selectedIndex].body ? (
+              <List dense>
+                {projectsData[selectedIndex].body.map((data) => (
+                  <ListItem>
+                    <ListItemIcon sx={{ minWidth: 0, paddingRight: '9px' }}>
+                      <CircleRoundedIcon sx={{ width: '15px', height: '15px' }} />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={data}
+                      primaryTypographyProps={{ variant: 'body2', color: 'text.secondary' }}
+                    />
+                  </ListItem>
+                ))}
+              </List>
+            ) : null}
+          </DialogContent>
+          <DialogActions
+            sx={{
+              width: '100%',
+              height: '5%',
+              paddingLeft: '15px',
+              paddingRight: '15px',
+            }}
+          >
+            <Box sx={{ display: 'flex', justifyContent: 'start', flex: '1' }}>
+              {projectsData[selectedIndex].active ? (
+                <Chip
+                  label="Active"
+                  color="success"
+                  size="small"
+                  icon={<RadioButtonCheckedRoundedIcon />}
+                />
+              ) : (
+                <Chip
+                  label="Inactive"
+                  color="error"
+                  size="small"
+                  icon={<RadioButtonUncheckedRoundedIcon />}
+                />
+              )}
+            </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'center', flex: '1' }}></Box>
+            <Box sx={{ display: 'flex', justifyContent: 'end', flex: '1' }}>
+              <SocialIcon
+                kind="github"
+                href={projectsData[selectedIndex].github}
+                size="30"
+                sx={{
+                  color: theme.palette.text.primary,
+                  '&:hover': {
+                    color: theme.palette.secondary.main,
+                    transition: 'all 0.3s ease-in-out',
+                  },
+                }}
+              />
+            </Box>
+          </DialogActions>
+        </Dialog>
         {/* aaaaaaaaaaa */}
         <Grid2 xs={15} sx={{ display: { xs: 'flex', lg: 'none' } }}>
           <Paper elevation={21} sx={{ overflow: 'auto', borderRadius: '15px' }}>
