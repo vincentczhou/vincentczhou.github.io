@@ -10,6 +10,8 @@ import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import { styled } from '@mui/material/styles'
 
+import siteData from '../data/siteData'
+
 const StyledImage = styled('img')`
   max-width: 720px;
   // height: 405px;
@@ -23,7 +25,7 @@ const Banner = forwardRef((props, ref) => {
     <Container
       maxWidth="false"
       sx={{
-        padding: '520px 15px 520px 15px',
+        padding: '300px 15px 390px 15px',
         minHeight: '100px',
         // backgroundImage: `url(./static/images/banner.JPG)`,
         backgroundRepeat: 'no-repeat',
@@ -48,15 +50,15 @@ const Banner = forwardRef((props, ref) => {
         sx={{ padding: '0px', justifyContent: 'space-evenly', alignItems: 'center' }}
       >
         <Grid2 xs={12} lg={5}>
-          <Typography variant="h1">Hi! I'm Vincent.</Typography>
-          <Typography variant="body1">
-            I'm currently an engineering student at Bellevue College, as well as the President of
-            the InfoSec Club there. Scroll down to learn more about me!
+          <Typography variant="h1" component="div">
+            {siteData.bannerHeader}
+          </Typography>
+          <Typography variant="body1" component="div">
+            {siteData.bannerBody1}
           </Typography>
           <Button variant="contained" color="success" size="large" disableRipple>
-            Current Status: Finals Week!
+            Status: {siteData.bannerStatus}
           </Button>
-          <div>Site is [WIP]</div>
         </Grid2>
         <Grid2 container xs={12} lg="auto" sx={{ justifyContent: 'center' }}>
           <Paper

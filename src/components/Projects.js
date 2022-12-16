@@ -194,6 +194,7 @@ const Projects = forwardRef((props, ref) => {
                   <Typography
                     variant="body2"
                     color="text.secondary"
+                    component="div"
                     sx={{
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
@@ -273,7 +274,7 @@ const Projects = forwardRef((props, ref) => {
             </IconButton>
           </DialogTitle>
           <DialogContent dividers>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="text.secondary" component="div">
               {projectsData[selectedIndex].description}
             </Typography>
             {projectsData[selectedIndex].body ? (
@@ -285,7 +286,11 @@ const Projects = forwardRef((props, ref) => {
                     </ListItemIcon>
                     <ListItemText
                       primary={data}
-                      primaryTypographyProps={{ variant: 'body2', color: 'text.secondary' }}
+                      primaryTypographyProps={{
+                        variant: 'body2',
+                        color: 'text.secondary',
+                        component: 'div',
+                      }}
                     />
                   </ListItem>
                 ))}
