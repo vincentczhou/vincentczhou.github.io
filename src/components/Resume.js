@@ -22,7 +22,8 @@ pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.vers
 // pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
 // const file = 'https://www.nhk.or.jp/lesson/update/pdf/leall_en_t.pdf'
-const file = '/static/Resume 2022.12.03.pdf'
+// const file = '/static/Resume 2022.12.03.pdf'
+const file = '/static/Resume 2023.03.26.pdf'
 
 const options = {
   cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`,

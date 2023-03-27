@@ -7,7 +7,7 @@ const siteData = {
       [WIP]
     </>
   ),
-  bannerStatus: <>Studying For The ACT</>,
+  bannerStatus: <>Studying For The SAT</>,
 }
 
 export default siteData
