@@ -1,13 +1,18 @@
+import Link from '@mui/material/Link'
+
 const siteData = {
   bannerHeader: <>Hi! I'm Vincent.</>,
   bannerBody1: (
     <>
-      I'm currently an engineering student at Bellevue College, as well as the President of the
-      InfoSec Club there. This site is made completely from scratch using React and Material UI!
-      [WIP]
+      I'm a junior at the University of Washington majoring in Computer Science, and a Research
+      Scientist at the{' '}
+      <Link href="https://www.beliveau.io" target="_blank" rel="noopener noreferrer">
+        Beliveau Lab
+      </Link>
+      . This site is made completely from scratch using React and Material UI!
     </>
   ),
-  bannerStatus: <>Studying For The SAT</>,
+  bannerStatus: <>This Site is WIP!</>,
 }
 
 export default siteData
