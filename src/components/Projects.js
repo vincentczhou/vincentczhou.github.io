@@ -99,7 +99,7 @@ const Projects = forwardRef((props, ref) => {
       id="projects"
       ref={ref}
     >
-      <Typography variant="h1" sx={{ padding: '0px 0px 150px 0px' }}>
+      <Typography variant="h1" sx={{ padding: '0px 0px 50px 0px' }}>
         Projects
       </Typography>
       <Grid2

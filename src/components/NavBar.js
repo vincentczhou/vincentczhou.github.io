@@ -96,7 +96,7 @@ const StyledHashLink = styled(HashLink, {
 const actions = [
   { icon: <HomeRoundedIcon />, name: 'Home' },
   { icon: <DocumentScannerRoundedIcon />, name: 'Resume' },
-  { icon: <IntegrationInstructionsRoundedIcon />, name: 'Skills' },
+  // { icon: <IntegrationInstructionsRoundedIcon />, name: 'Skills' },
   { icon: <SubtitlesRoundedIcon />, name: 'Projects' },
 ]
 

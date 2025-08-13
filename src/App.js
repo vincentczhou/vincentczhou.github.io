@@ -1,5 +1,6 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+// import './live2d/autoload.js'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import { BrowserRouter } from 'react-router-dom'
@@ -87,7 +88,7 @@ function App() {
             <NavBar themeToggle={toggleMode} />
             <Banner ref={homeRef} />
             <Resume ref={resumeRef} resumeLoad={setResumeLoaded} />
-            <Skills ref={skillsRef} />
+            {/* <Skills ref={skillsRef} /> */}
             <Projects ref={projectsRef} />
             <Footer />
           </BrowserRouter>

@@ -26,7 +26,8 @@ pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.vers
 // const file = '/static/Resume 2023.03.26.pdf'
 // const file = '/static/Resume 2023.05.31.pdf'
 // const file = '/static/Resume 2023.08.19.pdf'
-const file = '/static/Resume 2024.06.19.pdf'
+// const file = '/static/Resume 2024.06.19.pdf'
+const file = '/static/Resume 2025.08.09.pdf'
 
 const options = {
   cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`,
@@ -103,7 +104,7 @@ const Resume = forwardRef(({ resumeLoad }, ref) => {
       id="resume"
       ref={ref}
     >
-      <Typography variant="h1" sx={{ padding: '0px 0px 150px 0px' }}>
+      <Typography variant="h1" sx={{ padding: '0px 0px 50px 0px' }}>
         Resume
       </Typography>
       <StyledDocument
