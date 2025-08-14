@@ -56,7 +56,14 @@ const Banner = forwardRef((props, ref) => {
           <Typography variant="body1" component="div">
             {siteData.bannerBody1}
           </Typography>
-          <Button variant="contained" color="success" size="large" disableRipple>
+          <Button
+            variant="contained"
+            color="success"
+            size="large"
+            sx={{ zIndex: '5' }}
+            id="status"
+            disableRipple
+          >
             Status: {siteData.bannerStatus}
           </Button>
         </Grid2>

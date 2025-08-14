@@ -1,6 +1,6 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-// import './live2d/autoload.js'
+import './live2d/autoload.js'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import { BrowserRouter } from 'react-router-dom'
