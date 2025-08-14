@@ -1,0 +1,16 @@
+{
+  "Version": 3,
+  "FileReferences": {
+    "Moc": "kanisan.moc3",
+    "Textures": ["kanisan.2048/texture_00.png"],
+    "Physics": "kanisan.physics3.json",
+    "DisplayInfo": "kanisan.cdi3.json"
+  },
+  "Groups": [
+    {
+      "Target": "Parameter",
+      "Name": "EyeBlink",
+      "Ids": []
+    }
+  ]
+}
