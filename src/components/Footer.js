@@ -33,6 +33,18 @@ const Footer = () => {
             },
           }}
         />
+        <SocialIcon
+          kind="linkedin"
+          href={siteMetadata.linkedin}
+          size="30"
+          sx={{
+            color: 'text.primary',
+            '&:hover': {
+              color: 'secondary.main',
+              transition: 'all 0.3s ease-in-out',
+            },
+          }}
+        />
       </Box>
       <Typography variant="caption" display="block" gutterBottom>
         Made by {siteMetadata.dev} {` • `} {`© ${new Date().getFullYear()}`}

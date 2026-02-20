@@ -64,7 +64,7 @@ const Banner = forwardRef((props, ref) => {
             id="status"
             disableRipple
           >
-            Status: {siteData.bannerStatus}
+            {siteData.bannerStatus}
           </Button>
         </Grid2>
         <Grid2 container xs={12} lg="auto" sx={{ justifyContent: 'center' }}>

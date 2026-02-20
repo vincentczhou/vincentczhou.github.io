@@ -13,7 +13,7 @@ const siteMetadata = {
   socialBanner: '/static/images/avatars/default.png',
   email: 'vkchau@uw.edu', // 'vincent.chau@bellevuecollege.edu.com',
   github: 'https://www.github.com/vincentczhou',
-  linkedin: '',
+  linkedin: 'https://www.linkedin.com/in/vincentkchau',
   ctftime: 'https://www.ctftime.com',
   homepage: 'https://www.vincentczhou.github.io',
   locale: 'en-US',
