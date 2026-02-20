@@ -89,7 +89,7 @@ function App() {
             <Banner ref={homeRef} />
             <Resume ref={resumeRef} resumeLoad={setResumeLoaded} />
             {/* <Skills ref={skillsRef} /> */}
-            <Projects ref={projectsRef} />
+            {/* <Projects ref={projectsRef} /> */}
             <Footer />
           </BrowserRouter>
         </ThemeProvider>

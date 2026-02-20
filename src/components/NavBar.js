@@ -97,7 +97,7 @@ const actions = [
   { icon: <HomeRoundedIcon />, name: 'Home' },
   { icon: <DocumentScannerRoundedIcon />, name: 'Resume' },
   // { icon: <IntegrationInstructionsRoundedIcon />, name: 'Skills' },
-  { icon: <SubtitlesRoundedIcon />, name: 'Projects' },
+  // { icon: <SubtitlesRoundedIcon />, name: 'Projects' },
 ]
 
 const NavBar = ({ themeToggle }) => {
