@@ -27,7 +27,9 @@ pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.vers
 // const file = '/static/Resume 2023.05.31.pdf'
 // const file = '/static/Resume 2023.08.19.pdf'
 // const file = '/static/Resume 2024.06.19.pdf'
-const file = '/static/Resume 2025.08.09.pdf'
+// const file = '/static/Resume 2025.08.09.pdf'
+// const file = '/static/Resume 2026.02.20 Japan.pdf'
+const file = '/static/Resume 2026.02.20.pdf'
 
 const options = {
   cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`,
